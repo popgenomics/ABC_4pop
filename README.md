@@ -30,7 +30,8 @@ An array of statistics corresponding to the average statistics computed over loc
   
 **Ex:** ABC_4pop.py SC_2M_2N AC 10  
   
-This example will run 10 multilocus simulations, with a secondary contact between population **A** and **C**. Migration is heterogeneous over the genome (2M) as well as the effective population size (2N).  
+This example will run 10 multilocus simulations, with a secondary contact between population **A** and **C**.  
+Migration is heterogeneous over the genome (2M) as well as the effective population size (2N).  
 All of the genomic heterogeneities are modeled by a rescaled Beta distribution.  
 Model in [SI, SC_1M_1N, SC_2M_1N, SC_1M_2N, SC_2M_2N]  
 Migration in [none, AC, BD, ACBD]  
