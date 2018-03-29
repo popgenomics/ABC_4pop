@@ -28,8 +28,12 @@ An array of statistics corresponding to the average statistics computed over loc
 **To run the simulations, simply use the following command:**  
 **ABC_4pop.py [model] [migration] [number of multilocus simulations]**  
   
-  
 **Ex:** ABC_4pop.py SC_2M_2N AC 10  
+  
+This example will run 10 multilocus simulations, with a secondary contact between population **A** and **C**.  
+Model in [SI, SC_1M_1N, SC_2M_1N, SC_1M_2N, SC_2M_2N]  
+Migration in [none, AC, BD, ACBD]  
+  
    
 This package requires:  
  [pypy](https://pypy.org) (has to be linked to the user's bin)  
@@ -38,10 +42,6 @@ This package requires:
  [priorgen_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/priorgen_4pop.py) (has to be linked to the user's bin)  
  [ABC_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/ABC_4pop.py) (has to be linked to the user's bin)  
   
-  
-This example will run 10 multilocus simulations, with a secondary contact between population **A** and **C**.  
-Model in [SI, SC_1M_1N, SC_2M_1N, SC_1M_2N, SC_2M_2N]  
-Migration in [none, AC, BD, ACBD]  
   
 Statistical comparison between "observation" and "simulations" can be made using various R libraries ([_abc_](https://cran.r-project.org/web/packages/abc/abc.pdf), [_abcrf_](https://cran.r-project.org/web/packages/abcrf/abcrf.pdf)).  
   
