@@ -30,12 +30,13 @@ An array of statistics corresponding to the average statistics computed over loc
   
   
 **Ex:** ABC_4pop.py SC_2M_2N AC 10  
+   
 This package requires:  
-[pypy](https://pypy.org) (has to be linked to the user's bin)  
-[numpy](http://www.numpy.org/)  
-[mscalc_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/mscalc_4pop.py) (has to be linked to the user's bin)  
-[priorgen_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/priorgen_4pop.py) (has to be linked to the user's bin)  
-[ABC_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/ABC_4pop.py) (has to be linked to the user's bin)  
+ [pypy](https://pypy.org) (has to be linked to the user's bin)  
+ [numpy](http://www.numpy.org/)  
+ [mscalc_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/mscalc_4pop.py) (has to be linked to the user's bin)  
+ [priorgen_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/priorgen_4pop.py) (has to be linked to the user's bin)  
+ [ABC_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/ABC_4pop.py) (has to be linked to the user's bin)  
   
   
 This example will run 10 multilocus simulations, with a secondary contact between population **A** and **C**.  
