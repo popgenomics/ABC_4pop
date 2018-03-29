@@ -24,7 +24,7 @@ Summary statistics are directly computed from the [msnsam](https://github.com/ro
 An array of statistics corresponding to the average statistics computed over loci and their standard deviation will be returned every multilocus simulation and written in the file **ABCstat.txt**.  
   
   
-### Usage  
+# Usage  
 This package requires:  
 [pypy](https://pypy.org) (has to be linked to the user's bin)  
 [numpy](http://www.numpy.org/)  
