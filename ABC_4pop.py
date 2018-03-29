@@ -60,7 +60,7 @@ if os.path.isfile('bpfile') == False:
 my_command = "pypy"
 test_pypy = any(os.access(os.path.join(path, my_command), os.X_OK) for path in os.environ["PATH"].split(os.pathsep))
 if test_pypy == False:
-	print(test_pypy)
+	print(help_pypy)
 	sys.exit()
 
 
