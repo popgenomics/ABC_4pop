@@ -18,7 +18,8 @@ help += "\n\n"
 help += "\t\t\t\033[1;32;40mAC\033[0m\tSecondary contact between pop_A and pop_C\033[0m\n"
 help += "\t\t\t\033[1;32;40mBD\033[0m\tSecondary contact between pop_B and pop_D\033[0m\n"
 help += "\t\t\t\033[1;32;40mACBD\033[0m\tSecondary contact between A<->C and B<->D\033[0m\n\n"
-help += "\t\t\033[1;32;40mExample: ./ABC_4pop.py SC_2M_2N AC 1000 100\033[0m\n"
+help += "\t\t\033[1;32;40mExample: ./ABC_4pop.py SC_2M_2N AC 10\033[0m\n"
+help += "\t\t\033[1;32;40mThis will run 10 multilocus simulations with a secondary contact between population A and C (M hetero + N hetero)\033[0m\n"
 
 
 help_bpfile = "\t\033[1;31;40mA file named bpfile is needed\033[0m\n\n\t"
