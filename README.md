@@ -33,11 +33,12 @@ An array of statistics corresponding to the average statistics computed over loc
 This example will run 10 multilocus simulations, with a secondary contact between population **A** and **C**.  
 Migration is heterogeneous over the genome (2M) as well as the effective population size (2N).  
 All of the genomic heterogeneities are modeled by a rescaled Beta distribution.  
+  
 Model in [SI, SC_1M_1N, SC_2M_1N, SC_1M_2N, SC_2M_2N]  
 Migration in [none, AC, BD, ACBD]  
   
    
-This package requires:  
+**This package requires**:  
  [pypy](https://pypy.org) (has to be linked to the user's bin)  
  [numpy](http://www.numpy.org/)  
  [mscalc_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/mscalc_4pop.py) (has to be linked to the user's bin)  
