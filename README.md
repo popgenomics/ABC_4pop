@@ -32,7 +32,7 @@ This package requires:
 [priorgen_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/priorgen_4pop.py) (has to be linked to the user's bin)  
 [ABC_4pop.py](https://github.com/popgenomics/ABC_4pop/blob/master/ABC_4pop.py) (has to be linked to the user's bin)  
   
-**To run the simulations, simply use the following command:  **
+**To run the simulations, simply use the following command:**  
 ABC_4pop.py [model] [migration] [number of multilocus simulations]  
   
 **Ex:** ABC_4pop.py SC_2M_2N AC 10  
