@@ -1,6 +1,6 @@
 # Model  
 **ABC_4pop** is made to investigate various models of speciation between four populations/species/gene-pools.
-The following topology of the species tree is the only assumed to date: ( (A, B), (C, D) ).
+The following topology of the species tree is the only assumed to date: ( (A, B), (C, D) ). Alternative models only differ by their temporal + geographical patterns of gene flow.  
 
 ![model](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/model.png)
 # Parameters  
