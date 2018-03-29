@@ -46,9 +46,7 @@ This package requires:
 Statistical comparison between "observation" and "simulations" can be made using various R libraries ([_abc_](https://cran.r-project.org/web/packages/abc/abc.pdf), [_abcrf_](https://cran.r-project.org/web/packages/abcrf/abcrf.pdf)).  
   
 In the following example, I measured the classification error among four models:  
-
 ![confusion matrix](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/confusion_matrix.png)  
-  
-In this example, I measured over 5,000 of simulated data under each model the error rate in classification. Errors are lying from 1.5% to 2.76%.  
+Probabilities of each model was inferred for 5,000 of simulated datasets under each model. Errors are lying from 1.5% to 2.76%.  
   
 
