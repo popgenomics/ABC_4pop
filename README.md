@@ -48,6 +48,6 @@ Statistical comparison between "observation" and "simulations" can be made using
   
 In the following example, I measured the classification error among four models:  
 ![confusion matrix](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/confusion_matrix.png)  
-Probabilities of each model was inferred for 5,000 of simulated datasets under each model. Errors are lying from 1.5% to 2.76%.  
+Probabilities of each model was inferred for 5,000 of simulated datasets under each model. Errors are lying between 1.5% and 2.76%.  
   
 
