@@ -69,7 +69,7 @@ The importance of variables in model classifications can be represented as follo
 ![variable_importance](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/variable_importance.png)    
 __ABBA-BABA__ _**fd**_ and _**D**_ statistics as well as _**Gmin**_ are the statistics with the greatest power to classify models, _i.e_, they reduce the dispersion of models along branches of each decision tree (measured by the Gini index).  
   
-However, it is important to note that these statistics are either sensitive to an available outgroup (ABBA-BABA), or are dependent on good quality inferences of haplotype phases (_**Gmin**_).  
+However, it is important to note that these statistics are either sensitive to an available outgroup (_**ABBA-BABA**_), or are dependent on good quality inferences of haplotype phases (_**Gmin**_).  
 Although they are the most informative on simulated data, biases in their measurements on real data can induce biases in inferences. Excluding these statistics does not greatly reduce inferential power. The remaining 111 statistics do not depend as much on external groups or third-party inferences, and they contain enough combined information to make model selection.  
 The choice of whether or not to include them in the inferences should belong only to the experimenter.
 
