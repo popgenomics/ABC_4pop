@@ -28,9 +28,11 @@ An array of statistics corresponding to the average statistics computed over loc
   
 # Usage  
 **To run the simulations, simply use the following command:**  
+```
 **ABC_4pop.py [model] [migration] [number of multilocus simulations]**  
   
 **Ex:** ABC_4pop.py SC_2M_2N AC 10  
+```
   
 This example will run 10 multilocus simulations, with a secondary contact between population **A** and **C**.  
 Migration is heterogeneous over the genome (2M) as well as the effective population size (2N).  
