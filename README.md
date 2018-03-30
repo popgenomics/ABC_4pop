@@ -56,9 +56,9 @@ In the following example, I measured the classification error among four models:
 Probabilities of each model was inferred for 5,000 of simulated datasets under each model. Errors are lying between 1.5% and 2.76%.  
   
 ## Testing the directionality of introgression  
-For a given pair of gene pools A and C, one can easily test whether the introgression occurred unidirectionally (A-->C or A<--C) **versus** bidirectionally (A<-->C).  
+For a given pair of gene pools A and C, one can easily test whether the introgression occurred unidirectionally (A-->C or A<--C) *versus* bidirectionally (A<-->C).  
   
 ![confusion matrix_2](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/confusion_matrix_2.png)    
-Adding the unidirectional models increased the classification error for bidirectional models compared to the previous analysis. Cases where the difference between the two migration rates is large will be interpreted as unidirectional. Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some models for which migration is biologically unidirectional.   
+Adding the unidirectional models increased the classification error for bidirectional models compared to the previous analysis. Cases where the difference between the two migration rates is large will be interpreted as unidirectional. Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.   
 
 
