@@ -15,7 +15,7 @@ help += "Accepted model specifiers:\n\t\t"
 help += "\n\t\t".join(["SI_1N", "SI_2N", "SC_1M_1N", "SC_1M_2N", "SC_2M_1N", "SC_2M_2N"])
 help += "\n\n"
 help += "\tAccepted indicators of migration:\n\t\t"
-help += "\n\t\t".join(["none (for SI)", "AC (for SC)", "BD (for SC)", "ACBD (for SC)"])
+help += "\n\t\t".join(["none (for SI)", "A (for SC)", "B (for SC)", "C (for SC)", "D (for SC)", "AC (for SC)", "BD (for SC)", "ACBD (for SC)"])
 help += "\n\n"
 help += "\t\033[1;32;40m#SI\033[0m\n\tmsnsam tbs 10000 -t tbs -r tbs tbs -I 4 tbs tbs tbs tbs 0 -n 1 tbs -n 2 tbs -n 3 tbs -n 4 tbs -m 1 3 tbs -m 3 1 tbs -m 2 4 tbs -m 4 2 tbs -em tbs 1 3 0 -em tbs 3 1 0 -em tbs 2 4 0 -em tbs 4 2 0 -ej tbs 2 1 -en tbs 1 tbs -ej tbs 4 3 -en tbs 3 tbs -ej tbs 3 1 -eN tbs tbs\033[0m\n\n" # no migration
 help += "\t\033[1;32;40m#SC\033[0m\n\tmsnsam tbs 10000 -t tbs -r tbs tbs -I 4 tbs tbs tbs tbs 0 -n 1 tbs -n 2 tbs -n 3 tbs -n 4 tbs -m 1 3 tbs -m 3 1 tbs -m 2 4 tbs -m 4 2 tbs -em tbs 1 3 0 -em tbs 3 1 0 -em tbs 2 4 0 -em tbs 4 2 0 -ej tbs 2 1 -en tbs 1 tbs -ej tbs 4 3 -en tbs 3 tbs -ej tbs 3 1 -eN tbs tbs\033[0m\n\n" # secondary contact between pop_A and pop_C
@@ -23,8 +23,12 @@ help += "\t\033[1;32;40m#1M\033[0m\t\tAll loci share the same M13, M31, M24 and 
 help += "\t\033[1;32;40m#1N\033[0m\t\tAll loci share the same N1, N2, N3, N4, Na_12, Na_34 and Na\033[0m\n"
 help += "\t\033[1;32;40m#2M\033[0m\t\tAll loci have different values for M13, M31, M24 and M42 (Beta distributed)\033[0m\n"
 help += "\t\033[1;32;40m#2N\033[0m\t\tAll loci have different N1, N2, N3, N4, Na_12, Na_34 and Na (Beta distributed)\033[0m\n\n"
-help += "\t\033[1;32;40m#BD\033[0m\t\tSecondary contact between pop_B and pop_D\033[0m\n"
-help += "\t\033[1;32;40m#AC\033[0m\t\tSecondary contact between pop_A and pop_C\033[0m\n"
+help += "\t\033[1;32;40m#A\033[0m\t\tSecondary contact between pop_A and pop_C, unidirectional A<--C\033[0m\n"
+help += "\t\033[1;32;40m#B\033[0m\t\tSecondary contact between pop_B and pop_D, unidirectional B<--D\033[0m\n"
+help += "\t\033[1;32;40m#C\033[0m\t\tSecondary contact between pop_A and pop_C, unidirectional A-->C\033[0m\n"
+help += "\t\033[1;32;40m#D\033[0m\t\tSecondary contact between pop_B and pop_D, unidirectional B-->D\033[0m\n"
+help += "\t\033[1;32;40m#AC\033[0m\t\tSecondary contact between pop_A and pop_C, bidirectional A<->C\033[0m\n"
+help += "\t\033[1;32;40m#BD\033[0m\t\tSecondary contact between pop_B and pop_D, bidirectional B<->D\033[0m\n"
 help += "\t\033[1;32;40m#ACBD\033[0m\t\tSecondary contact between A<->C and B<->D\033[0m\n\n"
 help += "\t\033[1;32;40mExample: ./priorgen_4pop_beta.py SC_2M_2N AC 1000\033[0m\n"
 
@@ -73,19 +77,47 @@ shape_N_a = uniform(low = shape_bound[0], high=shape_bound[1], size = nMultilocu
 shape_N_b = uniform(low = shape_bound[0], high=shape_bound[1], size = nMultilocus)
 
 ## Miration rates
-if 'AC' in sys.argv[2]:
+if sys.argv[2] == 'A':
 	M13 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
-	M31 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
-else:
-	M13 = [0]*nMultilocus
 	M31 = [0]*nMultilocus
-
-if 'BD' in sys.argv[2]:
-	M24 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
-	M42 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
-else:
 	M24 = [0]*nMultilocus
 	M42 = [0]*nMultilocus
+
+if sys.argv[2] == 'B':
+	M13 = [0]*nMultilocus
+	M31 = [0]*nMultilocus
+	M24 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
+	M42 = [0]*nMultilocus
+
+if sys.argv[2] == 'C':
+	M13 = [0]*nMultilocus
+	M31 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
+	M24 = [0]*nMultilocus
+	M42 = [0]*nMultilocus
+
+if sys.argv[2] == 'D':
+	M13 = [0]*nMultilocus
+	M31 = [0]*nMultilocus
+	M24 = [0]*nMultilocus
+	M42 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
+
+if sys.argv[2] == 'AC':
+	M13 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
+	M31 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
+	M24 = [0]*nMultilocus
+	M42 = [0]*nMultilocus
+
+if sys.argv[2] == 'BD':
+	M13 = [0]*nMultilocus
+	M31 = [0]*nMultilocus
+	M24 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
+	M42 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
+
+if sys.argv[2] == 'ACBD':
+	M13 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
+	M31 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
+	M24 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
+	M42 = uniform(low = M_bound[0], high = M_bound[1], size = nMultilocus)
 
 ## factor of local reduction in Me. One Beta distribution for each of the migration rates 
 shape_M13_a = uniform(low = shape_bound[0], high=shape_bound[1], size = nMultilocus)
