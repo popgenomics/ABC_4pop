@@ -63,4 +63,14 @@ For a given pair of gene pools A and C, one can easily test whether the introgre
 ![confusion matrix_2](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/confusion_matrix_2.png)    
 Adding the unidirectional models increased the classification error for bidirectional models compared to the previous analysis. Cases where the difference between the two migration rates is large will be interpreted as unidirectional. Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.   
 
+  
+## Variable importance
+The importance of variables in model classifications can be represented as follows (top 30 over 186):  
+![variable_importance](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/variable_importance.png)    
+ABBA-BABA _fd_ and _D_ statistics as well as Gmin are the statistics with the greatest power to classify models, _i.e_, they reduce the dispersion of models along branched of each decision tree (measured by the Gini index).  
+  
+However, it is important to note that these statistics are either sensitive to an available outgroup (ABBA-BABA), or are dependent on good quality inferences of haplotype phases (Gmin).  
+Although they are the most informative on simulated data, biases in their measurements on real data can induce biases in inferences. Excluding these statistics does not greatly reduce inferential power. The remaining 111 statistics do not depend as much on external groups or third-party inferences, and they contain enough combined information to make model selection.  
+The choice of whether or not to include them in the inferences should belong only to the experimenter.
+
 
