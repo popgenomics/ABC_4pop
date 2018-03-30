@@ -3,21 +3,26 @@
 import os
 import sys
 
+accepted_models = ["SI_1N", "SI_2N", "SC_1M_1N", "SC_1M_2N", "SC_2M_1N", "SC_2M_2N"]
+accepted_migrations = ["none", "A", "B", "C", "D", "AC", "BD", "ACBD"]
 
 help = "\t\033[1;31;40mTakes 3 arguments:\n\t\ti) one model specifier\n\t\tii) one indicator of migration\n\t\tiii) a number of multilocus simulations\033[0m\n\n\t"
 help += "\033[1;32;40mAccepted model specifiers:\033[0m\n\t\t"
-help += "\n\t\t".join(["SI_1N", "SI_2N", "SC_1M_1N", "SC_1M_2N", "SC_2M_1N", "SC_2M_2N"])
+help += "\n\t\t".join(accepted_models)
 help += "\n\t\t\t\033[1;32;40m1M\033[0m\tAll loci share the same M13, M31, M24 and M42\033[0m\n"
 help += "\t\t\t\033[1;32;40m1N\033[0m\tAll loci share the same N1, N2, N3, N4, Na_12, Na_34 and Na\033[0m\n"
 help += "\t\t\t\033[1;32;40m2M\033[0m\tAll loci have different values for M13, M31, M24 and M42 (Beta distributed)\033[0m\n"
 help += "\t\t\t\033[1;32;40m2N\033[0m\tAll loci have different N1, N2, N3, N4, Na_12, Na_34 and Na (Beta distributed)\033[0m\n\n"
-help += "\n\n"
 help += "\t\033[1;32;40mAccepted indicators of migration:\033[0m\n\t\t"
-help += "\n\t\t".join(["none (for SI)", "AC (for SC)", "BD (for SC)", "ACBD (for SC)"])
-help += "\n\n"
-help += "\t\t\t\033[1;32;40mAC\033[0m\tSecondary contact between pop_A and pop_C\033[0m\n"
-help += "\t\t\t\033[1;32;40mBD\033[0m\tSecondary contact between pop_B and pop_D\033[0m\n"
-help += "\t\t\t\033[1;32;40mACBD\033[0m\tSecondary contact between A<->C and B<->D\033[0m\n\n"
+help += "\n\t\t".join(accepted_migrations)
+help += "\n"
+help += "\t\t\t\033[1;32;40mA\033[0m\t\tSecondary contact between pop_A and pop_C, unidirectional A\033[0m" + u'\u2190' + " C\n"
+help += "\t\t\t\033[1;32;40mB\033[0m\t\tSecondary contact between pop_B and pop_D, unidirectional B\033[0m" + u'\u2190' + " D\n"
+help += "\t\t\t\033[1;32;40mC\033[0m\t\tSecondary contact between pop_A and pop_C, unidirectional A\033[0m" + u'\u2192' + " C\n"
+help += "\t\t\t\033[1;32;40mD\033[0m\t\tSecondary contact between pop_B and pop_D, unidirectional B\033[0m" + u'\u2192' + " D\n"
+help += "\t\t\t\033[1;32;40mAC\033[0m\t\tSecondary contact between pop_A and pop_C, bidirectional  A\033[0m" + u'\u2194' + " C\n"
+help += "\t\t\t\033[1;32;40mBD\033[0m\t\tSecondary contact between pop_B and pop_D, bidirectional  B\033[0m" + u'\u2194' + " D\n"
+help += "\t\t\t\033[1;32;40mACBD\033[0m\t\tSecondary contact between A\033[0m" + u'\u2194' + " C and B" + u'\u2194' + " D\n\n"
 help += "\t\t\033[1;32;40mExample: ./ABC_4pop.py SC_2M_2N AC 10\033[0m\n"
 help += "\t\t\033[1;32;40mThis will run 10 multilocus simulations with a secondary contact between population A and C (M hetero + N hetero)\033[0m\n"
 
@@ -93,6 +98,17 @@ if len(sys.argv) != 4:
 model = sys.argv[1]
 migration = sys.argv[2]
 nMultilocus = int(sys.argv[3])
+
+if model not in accepted_models:
+	print("\n\t\033[1;31;40mThe model '{0}' is not in the list of accepted models\n\n\t".format(model))
+	print(help)
+	sys.exit()
+
+if migration not in accepted_migrations:
+	print("\n\t\033[1;31;40mThe migration '{0}' is not in the list of accepted patterns of migration\n\n\t".format(migration))
+	print(help)
+	sys.exit()
+
 
 infile = open("bpfile", "r")
 tmp = infile.readline()
