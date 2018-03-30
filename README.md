@@ -55,4 +55,9 @@ In the following example, I measured the classification error among four models:
 ![confusion matrix](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/confusion_matrix.png)  
 Probabilities of each model was inferred for 5,000 of simulated datasets under each model. Errors are lying between 1.5% and 2.76%.  
   
+## Testing the directionality of introgression  
+For a given pair of gene pools A and C, one can easily test whether the introgression occurred unidirectionally (A-->C or A<--C) __versus__ bidirectionally (A<-->C).  
+  
+![confusion matrix_2](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/confusion_matrix_2.png)    
+
 
