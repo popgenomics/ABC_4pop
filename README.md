@@ -83,9 +83,9 @@ For a given pair of gene pools A and C, one can easily test whether the introgre
 | __SI__                 | 20      | 13       | 19                 | 13       | 12       | 12       | 9        | 4902 | 0.0196      |
 
 Adding the unidirectional models increased the classification error for bidirectional models compared to the previous analysis. Cases where the difference between the two migration rates is large will be interpreted as unidirectional. Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.   
+Removing some statistics will increase the classification error. 
   
-  
-## confusion matrix: ABBA-BABA statistics discarded (__D__ and __fd__)
+## confusion matrix: effects of discarding ABBA-BABA statistics (__D__ and __fd__)
 |                | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
 |:---------------|:-------|:-------|:---------------|:-------|:-------|:-------|:-------|:-----|:------------|
 | __SC A←C__         | 4606   | 177    | 30             | 7      | 3      | 88     | 3      | 86   | 0.0788      |
@@ -98,7 +98,7 @@ Adding the unidirectional models increased the classification error for bidirect
 | __SI__             | 26     | 13     | 15             | 21     | 14     | 11     | 17     | 4883 | 0.0234      |
   
   
-## confusion matrix: no Gmin, minDiv, Gmax and maxDiv statistics 
+## confusion matrix: effects of discarding Gmin, minDiv, Gmax and maxDiv statistics 
 |                | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
 |:---------------|:-------|:-------|:---------------|:-------|:-------|:-------|:-------|:-----|:------------|
 | __SC A←C__         | 4680   | 117    | 16             | 3      | 5      | 61     | 1      | 117  | 0.064       |
