@@ -71,7 +71,7 @@ Probabilities of each model was inferred for 5,000 of simulated datasets under e
 For a given pair of gene pools A and C, one can easily test whether the introgression occurred unidirectionally (A-->C or A<--C) *versus* bidirectionally (A<-->C).  
   
 ## Confusion matrix: all statistics
-|                    | SC A← C | SC A↔ C | SC A↔ C and B↔ D | SC B← D | SC B↔ D | SC A→ C | SC B→ D | SI   | class.error |
+|                    | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
 |:-------------------|:--------|:---------|:-------------------|:---------|:---------|:---------|:---------|:-----|:------------|
 | SC A← C            | 4693    | 108      | 28                 | 3        | 4        | 65       | 1        | 98   | 0.0614      |
 | SC A↔ C           | 307     | 4298     | 16                 | 3        | 3        | 338      | 2        | 33   | 0.1404      |
@@ -83,8 +83,9 @@ For a given pair of gene pools A and C, one can easily test whether the introgre
 | SI                 | 20      | 13       | 19                 | 13       | 12       | 12       | 9        | 4902 | 0.0196      |
 
 Adding the unidirectional models increased the classification error for bidirectional models compared to the previous analysis. Cases where the difference between the two migration rates is large will be interpreted as unidirectional. Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.   
-
-## confusion_matrix_8models_noABBA
+  
+  
+## confusion matrix: ABBA-BABA statistics discarded (__D__ and __fd__)
 |                | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
 |:---------------|:-------|:-------|:---------------|:-------|:-------|:-------|:-------|:-----|:------------|
 | SC A←C         | 4606   | 177    | 30             | 7      | 3      | 88     | 3      | 86   | 0.0788      |
@@ -95,6 +96,20 @@ Adding the unidirectional models increased the classification error for bidirect
 | SC A → C       | 81     | 187    | 25             | 6      | 2      | 4624   | 2      | 73   | 0.0752      |
 | SC B → D       | 10     | 9      | 18             | 82     | 163    | 7      | 4630   | 81   | 0.074       |
 | SI             | 26     | 13     | 15             | 21     | 14     | 11     | 17     | 4883 | 0.0234      |
+  
+  
+## confusion matrix: no Gmin, minDiv, Gmax and maxDiv statistics 
+|                | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
+|:---------------|:-------|:-------|:---------------|:-------|:-------|:-------|:-------|:-----|:------------|
+| SC A←C         | 4680   | 117    | 16             | 3      | 5      | 61     | 1      | 117  | 0.064       |
+| SC A↔C         | 361    | 4207   | 18             | 4      | 3      | 361    | 2      | 44   | 0.1586      |
+| SC A↔C and B↔D | 39     | 48     | 4763           | 28     | 50     | 23     | 25     | 24   | 0.0474      |
+| SC B ← D       | 3      | 7      | 16             | 4700   | 119    | 0      | 43     | 112  | 0.06        |
+| SC B ↔ D       | 6      | 4      | 16             | 361    | 4200   | 2      | 352    | 59   | 0.16        |
+| SC A → C       | 51     | 138    | 13             | 5      | 2      | 4673   | 3      | 115  | 0.0654      |
+| SC B → D       | 16     | 5      | 18             | 46     | 106    | 5      | 4680   | 124  | 0.064       |
+| SI             | 22     | 12     | 16             | 19     | 15     | 16     | 6      | 4894 | 0.0212      |
+
   
 ## Variable importance
 The importance of variables in model classifications can be represented as follows (top 30 over 186):  
