@@ -74,6 +74,18 @@ For a given pair of gene pools A and C, one can easily test whether the introgre
 Adding the unidirectional models increased the classification error for bidirectional models compared to the previous analysis. Cases where the difference between the two migration rates is large will be interpreted as unidirectional. Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.   
 
 ## confusion_matrix_8models_allStats
+|                    | SC A← C | SC A ↔ C | SC A ↔ C and B ↔ D | SC B ← D | SC B ↔ D | SC A → C | SC B → D | SI   | class.error |
+|:-------------------|:--------|:---------|:-------------------|:---------|:---------|:---------|:---------|:-----|:------------|
+| SC A← C            | 4693    | 108      | 28                 | 3        | 4        | 65       | 1        | 98   | 0.0614      |
+| SC A ↔ C           | 307     | 4298     | 16                 | 3        | 3        | 338      | 2        | 33   | 0.1404      |
+| SC A ↔ C and B ↔ D | 25      | 30       | 4844               | 17       | 32       | 13       | 22       | 17   | 0.0312      |
+| SC B ← D           | 6       | 6        | 20                 | 4734     | 105      | 2        | 50       | 77   | 0.0532      |
+| SC B ↔ D           | 8       | 6        | 19                 | 327      | 4282     | 1        | 318      | 39   | 0.1436      |
+| SC A → C           | 60      | 101      | 24                 | 2        | 3        | 4734     | 2        | 74   | 0.0532      |
+| SC B → D           | 13      | 7        | 14                 | 48       | 105      | 9        | 4725     | 79   | 0.055       |
+| SI                 | 20      | 13       | 19                 | 13       | 12       | 12       | 9        | 4902 | 0.0196      |
+
+## confusion_matrix_8models_allStats
 |                | SC
 A← C | SC
 A ↔ C | SC
