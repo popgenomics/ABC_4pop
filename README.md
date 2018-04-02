@@ -101,7 +101,7 @@ Adding the unidirectional models increased the classification error for bidirect
 ## confusion matrix: no Gmin, minDiv, Gmax and maxDiv statistics 
 |                | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
 |:---------------|:-------|:-------|:---------------|:-------|:-------|:-------|:-------|:-----|:------------|
-| _*SC A←C*_         | 4680   | 117    | 16             | 3      | 5      | 61     | 1      | 117  | 0.064       |
+| __SC A←C__         | 4680   | 117    | 16             | 3      | 5      | 61     | 1      | 117  | 0.064       |
 | SC A↔C         | 361    | 4207   | 18             | 4      | 3      | 361    | 2      | 44   | 0.1586      |
 | SC A↔C and B↔D | 39     | 48     | 4763           | 28     | 50     | 23     | 25     | 24   | 0.0474      |
 | SC B ← D       | 3      | 7      | 16             | 4700   | 119    | 0      | 43     | 112  | 0.06        |
