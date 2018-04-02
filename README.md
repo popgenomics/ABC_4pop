@@ -68,7 +68,7 @@ In the following example, I measured the classification error among four models:
 Probabilities of each model was inferred for 5,000 of simulated datasets under each model. Errors are lying between 1.5% and 2.76%.  
   
 ## Testing for the directionality of introgression  
-For a given pair of gene pools A and C, one can easily test whether the introgression occurred unidirectionally (A-->C or A<--C) *versus* bidirectionally (A←C).
+For a given pair of gene pools A and C, one can easily test whether the introgression occurred unidirectionally (A→C or A←C) *versus* bidirectionally (A↔C).
   
 ## Confusion matrix: all statistics
 |                    | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
