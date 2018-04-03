@@ -4,9 +4,10 @@ Table of contents
    * [Parameters](#parameters)
    * [Summary statistics](#summary-statistics)
    * [Usage](#usage)
+   * [Results](#results)
       * [Testing for the directionality of introgression](#testing-for-the-directionality-of-introgression)
-      * [Variable importance](#variable-importance)
-
+      * [](#Effects-of-statistics-on-model-confusion)
+  
 
 # Model  
 **ABC_4pop** is made to investigate various models of speciation between four populations/species/gene-pools.
@@ -88,6 +89,8 @@ In the following example, I measured the classification error among four models:
 ![confusion matrix](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/confusion_matrix.png)  
 Probabilities of each model was inferred for 5,000 of simulated datasets under each model. Errors are lying between 1.5% and 2.76%.  
   
+  
+# Results  
 ## Testing for the directionality of introgression  
 For a given pair of gene pools A and C, one can easily test whether the introgression occurred unidirectionally (A→C or A←C) *versus* bidirectionally (A↔C).
   
@@ -125,6 +128,7 @@ Even if the model is labelled as bidirectional, randomly chosen values for migra
 | SC A → C           | 0.0532    | 0.0752             | 0.0654        | 0.0966                      |
 | SC B → D           | 0.055     | 0.074              | 0.064         | 0.0956                      |
 | SI                 | 0.0196    | 0.0234             | 0.0212        | 0.0396                      |
+  
 Removing ABBA-BABA or Gmin statistics will individually increase the classification error by a low factor, however, this reduction begins to be worrisome when both categories of statistics are neglected. It should always be borne in mind that model errors concern border line cases between two models.  
   
 __ABBA-BABA__ _**fd**_ and _**D**_ statistics as well as _**Gmin**_ have an important power to classify models, _i.e_, they reduce the dispersion of models along branches of each decision tree (measured by the Gini index).  
