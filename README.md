@@ -82,7 +82,15 @@ For a given pair of gene pools A and C, one can easily test whether the introgre
 | __SC B→D__           | 13      | 7        | 14                 | 48       | 105      | 9        | 4725     | 79   | 0.055       |
 | __SI__                 | 20      | 13       | 19                 | 13       | 12       | 12       | 9        | 4902 | 0.0196      |
 
-Adding the unidirectional models increased the classification error for bidirectional models compared to the previous analysis. Cases where the difference between the two migration rates is large will be interpreted as unidirectional. Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.   
+Adding the unidirectional models increased the classification error for bidirectional models compared to the previous analysis. Cases where the difference between the two migration rates is large will be interpreted as unidirectional.  
+The following figures show the join distributions for M(A←C) and M(A→C) of the datasets simulated under the model "A↔C" but supported as being:  
+"A↔C"  
+"A←C"  
+"A→C"  
+The ABC analysis tends to consider an "A↔C" model as being "A→C" when the migration rates M(A→C) is much greater than M(A←C).  
+Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.  
+
+   
 Removing some statistics will increase the classification error. 
   
 ## confusion matrix: effects of discarding ABBA-BABA statistics (__D__ and __fd__)
