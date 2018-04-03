@@ -117,7 +117,10 @@ Cases where the difference between the two migration rates is large will be inte
 Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.  
 
    
-## Effects of statistics on model confusion
+## Effects of statistics on model confusion  
+The same model comparison was also realized by removing statistics depending on an available sequenced outgroup (_no ABBA-BABA stats_ analysis), by removing statistics depending on the identification of gametic phases (_no Gmin stats_ analysis) or by only keeping statistics describing a folded site-frequency-spectrum (_no ABBA-BABA and Gmin stats_ analysis).  
+For each analysis, the error rate in model classification was also measured for 5,000 of randomly simulated datasets under each of the 8 alternative models. This error rate simply corresponds to the rate of misclassification.  
+  
 | Targets            | All stats | No ABBA-BABA stats | No Gmin stats | No ABBA-BABA and Gmin stats |
 |:-------------------|:----------|:-------------------|:--------------|:----------------------------|
 | SC A← C            | 0.0614    | 0.0788             | 0.064         | 0.0942                      |
