@@ -115,47 +115,20 @@ Even if the model is labelled as bidirectional, randomly chosen values for migra
 
    
 Removing some statistics will increase the classification error. 
-  
-## confusion matrix: effects of discarding ABBA-BABA statistics (__D__ and __fd__)
-|                | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
-|:---------------|:-------|:-------|:---------------|:-------|:-------|:-------|:-------|:-----|:------------|
-| __SC A←C__         | 4606   | 177    | 30             | 7      | 3      | 88     | 3      | 86   | 0.0788      |
-| __SC A↔C__         | 351    | 4194   | 15             | 4      | 3      | 399    | 5      | 29   | 0.1612      |
-| __SC A↔C and B↔D__ | 32     | 38     | 4833           | 18     | 34     | 16     | 15     | 14   | 0.0334      |
-| __SC B ← D__       | 7      | 5      | 20             | 4632   | 172    | 4      | 80     | 80   | 0.0736      |
-| __SC B ↔ D__       | 9      | 3      | 19             | 352    | 4196   | 2      | 377    | 42   | 0.1608      |
-| __SC A → C__       | 81     | 187    | 25             | 6      | 2      | 4624   | 2      | 73   | 0.0752      |
-| __SC B → D__       | 10     | 9      | 18             | 82     | 163    | 7      | 4630   | 81   | 0.074       |
-| __SI__             | 26     | 13     | 15             | 21     | 14     | 11     | 17     | 4883 | 0.0234      |
-  
-  
-## confusion matrix: effects of discarding Gmin, minDiv, Gmax and maxDiv statistics 
-|                | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
-|:---------------|:-------|:-------|:---------------|:-------|:-------|:-------|:-------|:-----|:------------|
-| __SC A←C__         | 4680   | 117    | 16             | 3      | 5      | 61     | 1      | 117  | 0.064       |
-| __SC A↔C__         | 361    | 4207   | 18             | 4      | 3      | 361    | 2      | 44   | 0.1586      |
-| __SC A↔C and B↔D__ | 39     | 48     | 4763           | 28     | 50     | 23     | 25     | 24   | 0.0474      |
-| __SC B ← D__       | 3      | 7      | 16             | 4700   | 119    | 0      | 43     | 112  | 0.06        |
-| __SC B ↔ D__       | 6      | 4      | 16             | 361    | 4200   | 2      | 352    | 59   | 0.16        |
-| __SC A → C__       | 51     | 138    | 13             | 5      | 2      | 4673   | 3      | 115  | 0.0654      |
-| __SC B → D__       | 16     | 5      | 18             | 46     | 106    | 5      | 4680   | 124  | 0.064       |
-| __SI__             | 22     | 12     | 16             | 19     | 15     | 16     | 6      | 4894 | 0.0212      |
-  
-  
-## confusion matrix: without ABBA-BABA and Gmin statistics
-|                | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
-|:---------------|:-------|:-------|:---------------|:-------|:-------|:-------|:-------|:-----|:------------|
-| __SC A←C__         | 4529   | 214    | 23             | 11     | 7      | 86     | 7      | 123  | 0.0942      |
-| __SC A↔C__         | 390    | 4116   | 18             | 8      | 5      | 416    | 10     | 37   | 0.1768      |
-| __SC A↔C and B↔D__ | 29     | 43     | 4779           | 35     | 47     | 21     | 25     | 21   | 0.0442      |
-| __SC B← D__       | 13     | 5      | 20             | 4531   | 225    | 6      | 85     | 115  | 0.0938      |
-| __SC B↔ D__       | 9      | 6      | 25             | 375    | 4143   | 7      | 390    | 45   | 0.1714      |
-| __SC A→ C__       | 74     | 232    | 20             | 17     | 6      | 4517   | 8      | 126  | 0.0966      |
-| __SC B→ D__       | 11     | 11     | 23             | 81     | 218    | 10     | 4522   | 124  | 0.0956      |
-| __SI__             | 39     | 15     | 19             | 44     | 19     | 35     | 27     | 4802 | 0.0396      |
-
+## Effects of statistics on model confusion
+| Targets            | All stats | No ABBA-BABA stats | No Gmin stats | No ABBA-BABA and Gmin stats |
+|:-------------------|:----------|:-------------------|:--------------|:----------------------------|
+| SC A← C            | 0.0614    | 0.0788             | 0.064         | 0.0942                      |
+| SC A ↔ C           | 0.1404    | 0.1612             | 0.1586        | 0.1768                      |
+| SC A ↔ C and B ↔ D | 0.0312    | 0.0334             | 0.0474        | 0.0442                      |
+| SC B ← D           | 0.0532    | 0.0736             | 0.06          | 0.0938                      |
+| SC B ↔ D           | 0.1436    | 0.1608             | 0.16          | 0.1714                      |
+| SC A → C           | 0.0532    | 0.0752             | 0.0654        | 0.0966                      |
+| SC B → D           | 0.055     | 0.074              | 0.064         | 0.0956                      |
+| SI                 | 0.0196    | 0.0234             | 0.0212        | 0.0396                      |
 
   
+ 
 ## Variable importance
 The importance of variables in model classifications can be represented as follows (top 30 over 186):  
 ![variable_importance](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/variable_importance.png)    
