@@ -33,7 +33,6 @@ Values for all parameters are found in the file **priorfile.txt**, one line per 
 # Summary statistics  
 Summary statistics are directly computed from the [msnsam](https://github.com/rossibarra/msnsam)'s output. For each locus, [mscalc](https://github.com/popgenomics/ABC_4pop/blob/master/mscalc_4pop.py) will compute:
 
-## Sheet1
 | Statistics         | Description                                                                 |
 |:-------------------|:----------------------------------------------------------------------------|
 | bialsites          |  number of SNPs in the alignment                                            |
