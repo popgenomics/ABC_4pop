@@ -114,7 +114,6 @@ Cases where the difference between the two migration rates is large will be inte
 Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.  
 
    
-Removing some statistics will increase the classification error. 
 ## Effects of statistics on model confusion
 | Targets            | All stats | No ABBA-BABA stats | No Gmin stats | No ABBA-BABA and Gmin stats |
 |:-------------------|:----------|:-------------------|:--------------|:----------------------------|
@@ -126,13 +125,10 @@ Removing some statistics will increase the classification error.
 | SC A → C           | 0.0532    | 0.0752             | 0.0654        | 0.0966                      |
 | SC B → D           | 0.055     | 0.074              | 0.064         | 0.0956                      |
 | SI                 | 0.0196    | 0.0234             | 0.0212        | 0.0396                      |
-
+Removing ABBA-BABA or Gmin statistics will individually increase the classification error by a low factor, however, this reduction begins to be worrisome when both categories of statistics are neglected. It should always be borne in mind that model errors concern border line cases between two models.  
   
- 
-## Variable importance
-The importance of variables in model classifications can be represented as follows (top 30 over 186):  
+__ABBA-BABA__ _**fd**_ and _**D**_ statistics as well as _**Gmin**_ have an important power to classify models, _i.e_, they reduce the dispersion of models along branches of each decision tree (measured by the Gini index).  
 ![variable_importance](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/variable_importance.png)    
-__ABBA-BABA__ _**fd**_ and _**D**_ statistics as well as _**Gmin**_ are the statistics with the greatest power to classify models, _i.e_, they reduce the dispersion of models along branches of each decision tree (measured by the Gini index).  
   
 However, it is important to note that these statistics are either sensitive to an available outgroup (_**ABBA-BABA**_), or are dependent on good quality inferences of haplotype phases (_**Gmin**_).  
 Although they are the most informative on simulated data, biases in their measurements on real data can induce biases in inferences. Excluding these statistics does not greatly reduce inferential power. The remaining 111 statistics do not depend as much on external groups or third-party inferences, and they contain enough combined information to make model selection.  
