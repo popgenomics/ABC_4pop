@@ -6,7 +6,7 @@ Table of contents
    * [Usage](#usage)
    * [Results](#results)
       * [Testing for the directionality of introgression](#testing-for-the-directionality-of-introgression)
-      * [Effects of statistics on model confusion](#Effects-of-statistics-on-model-confusion)
+      * [Effects of statistics on model confusion](#effects-of-statistics-on-model-confusion)
   
 
 # Model  
