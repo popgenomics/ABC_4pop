@@ -36,24 +36,24 @@ Summary statistics are directly computed from the [msnsam](https://github.com/ro
 
 | Statistics         | Description                                                                 |
 |:-------------------|:----------------------------------------------------------------------------|
-| bialsites          |  number of SNPs in the alignment                                            |
-| sfXY               |  number of fixed differences between species X and Y / locus length         |
-| sxX                |  number of exclusively polymorphic positions in species X / locus length    |
-| ssXY               |  number of shared biallelic positions between species X and Y/ locus length |
-| piX                |  Tajima’s Theta within species X                                            |
-| thetaX             |  Watterson’s Theta witin species X                                          |
-| pearson_r_pi_XY    |  correlation’s coefficient for pi over orthologs between X and Y            |
-| pearson_r_theta_XY |  correlation’s coefficient for theta over orthologs between X and Y         |
-| DtajX              |  Tajima’s D for species X                                                   |
-| divXY              |  raw divergence Dxy measured between X and Y                                |
-| netdivXY           |  net divergence Da measured between X and Y                                 |
-| minDivXY           |  smallest divergence measured between one individual from X and one from Y  |
-| maxDivXY           |  highest divergence measured between one individual from X and one from Y   |
-| GminXY             |  minDIvXY/divXY                                                             |
-| GmaxXY             |  maxDIvXY/divXY                                                             |
-| FST_XY             |  FST between X and Y                                                        |
-| D_XY_Z             |  ABBA-BABA’s D statistics where pop_1 = X, pop_2 = Y and pop_3 = Z          |
-| fd_XY_Z            |  ABBA-BABA’s fd statistics where pop_1 = X, pop_2 = Y and pop_3 = Z         |
+| __bialsites__          |  number of SNPs in the alignment                                            |
+| __sf XY__               |  number of fixed differences between species X and Y / locus length         |
+| __sx X__                |  number of exclusively polymorphic positions in species X / locus length    |
+| __ss XY__               |  number of shared biallelic positions between species X and Y/ locus length |
+| __pi X__                |  Tajima’s Theta within species X                                            |
+| __theta X__             |  Watterson’s Theta witin species X                                          |
+| __pearson_r_pi XY__    |  correlation’s coefficient for pi over orthologs between X and Y            |
+| __pearson_r_theta XY__ |  correlation’s coefficient for theta over orthologs between X and Y         |
+| __Dtaj X__              |  Tajima’s D for species X                                                   |
+| __div XY__              |  raw divergence Dxy measured between X and Y                                |
+| __netdiv XY__           |  net divergence Da measured between X and Y                                 |
+| __minDiv XY__           |  smallest divergence measured between one individual from X and one from Y  |
+| __maxDiv XY__           |  highest divergence measured between one individual from X and one from Y   |
+| __Gmin XY__             |  minimum divergence between one sequence from X and one from Y __minDivXY__ divided by the average __divXY__                                                             |
+| __Gmax XY__             |  __maxDivXY/divXY__                                                             |
+| __FST XY__             |  FST between X and Y compute as 1-(pi_X + pi_Z) / (2*pi_XY)                                                        |
+| __D XY_Z__             |  ABBA-BABA’s D statistics where pop_1 = X, pop_2 = Y and pop_3 = Z          |
+| __fd XY_Z__            |  ABBA-BABA’s fd statistics where pop_1 = X, pop_2 = Y and pop_3 = Z         |
 
 An array of statistics corresponding to the average statistics computed over loci and their standard deviation will be returned every multilocus simulation and written in the file **ABCstat.txt**.  
   
