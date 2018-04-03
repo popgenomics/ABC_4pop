@@ -113,6 +113,9 @@ The following figures show the join distributions for M(A←C) and M(A→C) of t
 "A→C"  
 ![space_param](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/space_param.png)  
 
+Figure A: Combinations of the two migration rates (M(A←C) and M(A→C)) producing datasets that were correctly supported as being the A↔C model.  
+Figure B: Combinations of the two migration rates (M(A←C) and M(A→C)) producing datasets that were uncorrectly supported as being the A←C model.  
+Figure C: Combinations of the two migration rates (M(A←C) and M(A→C)) producing datasets that were uncorrectly supported as being the A→C model.  
 Cases where the difference between the two migration rates is large will be interpreted as unidirectional. Thus, the ABC analysis tends to consider an "A↔C" model as being "A→C" when the migration rate M(A→C) is much greater than M(A←C).  
 Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.  
 
