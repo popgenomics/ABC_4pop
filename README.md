@@ -32,7 +32,29 @@ Values for all parameters are found in the file **priorfile.txt**, one line per 
     
 # Summary statistics  
 Summary statistics are directly computed from the [msnsam](https://github.com/rossibarra/msnsam)'s output. For each locus, [mscalc](https://github.com/popgenomics/ABC_4pop/blob/master/mscalc_4pop.py) will compute:
-![ABCstatistics](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/statistics.png)  
+
+## Sheet1
+| Statistics         | Description                                                                 |
+|:-------------------|:----------------------------------------------------------------------------|
+| bialsites          |  number of SNPs in the alignment                                            |
+| sfXY               |  number of fixed differences between species X and Y / locus length         |
+| sxX                |  number of exclusively polymorphic positions in species X / locus length    |
+| ssXY               |  number of shared biallelic positions between species X and Y/ locus length |
+| piX                |  Tajima’s Theta within species X                                            |
+| thetaX             |  Watterson’s Theta witin species X                                          |
+| pearson_r_pi_XY    |  correlation’s coefficient for pi over orthologs between X and Y            |
+| pearson_r_theta_XY |  correlation’s coefficient for theta over orthologs between X and Y         |
+| DtajX              |  Tajima’s D for species X                                                   |
+| divXY              |  raw divergence Dxy measured between X and Y                                |
+| netdivXY           |  net divergence Da measured between X and Y                                 |
+| minDivXY           |  smallest divergence measured between one individual from X and one from Y  |
+| maxDivXY           |  highest divergence measured between one individual from X and one from Y   |
+| GminXY             |  minDIvXY/divXY                                                             |
+| GmaxXY             |  maxDIvXY/divXY                                                             |
+| FST_XY             |  FST between X and Y                                                        |
+| D_XY_Z             |  ABBA-BABA’s D statistics where pop_1 = X, pop_2 = Y and pop_3 = Z          |
+| fd_XY_Z            |  ABBA-BABA’s fd statistics where pop_1 = X, pop_2 = Y and pop_3 = Z         |
+
 An array of statistics corresponding to the average statistics computed over loci and their standard deviation will be returned every multilocus simulation and written in the file **ABCstat.txt**.  
   
   
@@ -70,7 +92,7 @@ Probabilities of each model was inferred for 5,000 of simulated datasets under e
 ## Testing for the directionality of introgression  
 For a given pair of gene pools A and C, one can easily test whether the introgression occurred unidirectionally (A→C or A←C) *versus* bidirectionally (A↔C).
   
-## Confusion matrix: all statistics
+## Confusion matrix (using all statistics)
 |                    | SC A←C | SC A↔C | SC A↔C and B↔D | SC B←D | SC B↔D | SC A→C | SC B→D | SI   | class.error |
 |:-------------------|:--------|:---------|:-------------------|:---------|:---------|:---------|:---------|:-----|:------------|
 | __SC A←C__            | 4693    | 108      | 28                 | 3        | 4        | 65       | 1        | 98   | 0.0614      |
@@ -89,7 +111,7 @@ The following figures show the join distributions for M(A←C) and M(A→C) of t
 "A→C"  
 ![space_param](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/space_param.png)  
 
-Cases where the difference between the two migration rates is large will be interpreted as unidirectional. Thus, the ABC analysis tends to consider an "A↔C" model as being "A→C" when the migration rates M(A→C) is much greater than M(A←C).  
+Cases where the difference between the two migration rates is large will be interpreted as unidirectional. Thus, the ABC analysis tends to consider an "A↔C" model as being "A→C" when the migration rate M(A→C) is much greater than M(A←C).  
 Even if the model is labelled as bidirectional, randomly chosen values for migration rates produce some simulated datasets for which migration is biologically unidirectional.  
 
    
