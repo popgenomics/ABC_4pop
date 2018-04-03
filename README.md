@@ -118,7 +118,7 @@ Even if the model is labelled as bidirectional, randomly chosen values for migra
 
    
 ## Effects of statistics on model confusion  
-The same model comparison was also realized by removing statistics depending on an available sequenced outgroup (_no ABBA-BABA stats_ analysis), by removing statistics depending on the identification of gametic phases (_no Gmin stats_ analysis) or by only keeping statistics describing a folded site-frequency-spectrum (_no ABBA-BABA and Gmin stats_ analysis).  
+	The same model comparison was also realized by removing statistics depending on an available sequenced outgroup (_no ABBA-BABA stats_ analysis), by removing statistics depending on the identification of gametic phases (_no Gmin stats_ analysis) or by only keeping statistics describing a folded site-frequency-spectrum (_no ABBA-BABA and Gmin stats_ analysis).  
 For each analysis, the error rate in model classification was also measured for 5,000 of randomly simulated datasets under each of the 8 alternative models. This error rate simply corresponds to the rate of misclassification.  
   
 | Targets            | All stats | No ABBA-BABA stats | No Gmin stats | No ABBA-BABA and Gmin stats |
@@ -132,13 +132,13 @@ For each analysis, the error rate in model classification was also measured for 
 | SC B → D           | 0.055     | 0.074              | 0.064         | 0.0956                      |
 | SI                 | 0.0196    | 0.0234             | 0.0212        | 0.0396                      |
   
-Removing ABBA-BABA or Gmin statistics will individually increase the classification error by a low factor, however, this reduction begins to be worrisome when both categories of statistics are neglected. It should always be borne in mind that model errors concern border line cases between two models.  
+	Removing ABBA-BABA or Gmin statistics will individually increase the classification error by a low factor, however, this reduction begins to be worrisome when both categories of statistics are neglected. It should always be borne in mind that model errors concern border line cases between two models.  
   
 __ABBA-BABA__ _**fd**_ and _**D**_ statistics as well as _**Gmin**_ have an important power to classify models, _i.e_, they reduce the dispersion of models along branches of each decision tree (measured by the Gini index).  
 ![variable_importance](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/variable_importance.png)    
   
-However, it is important to note that these statistics are either sensitive to an available outgroup (_**ABBA-BABA**_), or are dependent on good quality inferences of haplotype phases (_**Gmin**_).  
-Although they are the most informative on simulated data, biases in their measurements on real data can induce biases in inferences. Excluding these statistics does not greatly reduce inferential power. The remaining 111 statistics do not depend as much on external groups or third-party inferences, and they contain enough combined information to make model selection.  
+	However, it is important to note that these statistics are either sensitive to an available outgroup (_**ABBA-BABA**_), or are dependent on good quality inferences of haplotype phases (_**Gmin**_).  
+	Although they are the most informative on simulated data, biases in their measurements on real data can induce biases in inferences. Excluding these statistics does not greatly reduce inferential power. The remaining 111 statistics do not depend as much on external groups or third-party inferences, and they contain enough combined information to make model selection.  
 The choice of whether or not to include them in the inferences should belong only to the experimenter.
 
 
