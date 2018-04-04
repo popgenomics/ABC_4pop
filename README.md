@@ -5,7 +5,7 @@ Table of contents
    * [Summary statistics](#summary-statistics)
    * [Usage](#usage)
    * [Results](#results)
-      * [Testing for ongoing migration _versus_ current isolation](#testing-for-ongoing-migration-_versus_-current-isolation)
+      * [Testing for ongoing migration _versus_ current isolation](#testing-for-ongoing-migration-versus-current-isolation)
       * [Testing for the directionality of introgression](#testing-for-the-directionality-of-introgression)
       * [Effects of statistics on model confusion](#effects-of-statistics-on-model-confusion)
   
