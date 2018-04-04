@@ -166,3 +166,6 @@ The red line is a line of slope 1 passing through the origin.
 Results for current populations are shown only for population A, and shows similar relationships between _real values_ and _estimated values_ for B, C and D.  
 In the same way for Na_AB and Na_CD, and for Tsplit_AB and Tsplit_CD.  
 
+### Effect of gene flow on paramters estimates  
+![parameters_tsplit_5models](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/tsplit_5models.pdf)  
+
