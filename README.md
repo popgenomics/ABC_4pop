@@ -9,8 +9,8 @@ ABC 4 pop
       * [Testing for the directionality of introgression](#testing-for-the-directionality-of-introgression)
       * [Effects of statistics on model confusion](#effects-of-statistics-on-model-confusion)
       * [Estimating the parameters](#estimating-the-parameters)
-            * [SI model](#si-model)
-            * [Effect of gene flow on paramters estimates](#effect-of-gene-flow-on-paramters-estimates)
+             * [SI model](#si-model)
+             * [Effect of gene flow on paramters estimates](#effect-of-gene-flow-on-paramters-estimates)
 
 # Model  
 **ABC_4pop** is made to investigate various models of speciation between four populations/species/gene-pools.
