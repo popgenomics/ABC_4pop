@@ -8,7 +8,7 @@ ABC 4 pop
       * [Testing for 'ongoing migration' _versus_ 'current isolation'](#testing-for-ongoing-migration-versus-current-isolation)
       * [Testing for the directionality of introgression](#testing-for-the-directionality-of-introgression)
       * [Effects of statistics on model confusion](#effects-of-statistics-on-model-confusion)
-  
+      * [Estimating the parameters](#estimating-the-parameters)
 
 # Model  
 **ABC_4pop** is made to investigate various models of speciation between four populations/species/gene-pools.
@@ -66,17 +66,16 @@ ABC_4pop.py [model] [migration] [number of multilocus simulations]
   
 Ex: ABC_4pop.py SC_2M_2N AC 10  
 ```
+This example will run 10 multilocus simulations, with a secondary contact between population **A** and **C**.  
+Migration is heterogeneous over the genome (2M) as well as the effective population size (2N).  
+All of the genomic heterogeneities are modeled by a rescaled Beta distribution.  
   
 ABC_4pop.py will simply execute the pipeline  
 ```
 priorgen | msnsam | mscalc
 ```
-  
 The output files are __ABCstat.txt__ (containing the computed summary statistics) and __priorfile.txt__ (containing the parameter values used to simulate the data from which the summary statistics were calculated).  
 
-This example will run 10 multilocus simulations, with a secondary contact between population **A** and **C**.  
-Migration is heterogeneous over the genome (2M) as well as the effective population size (2N).  
-All of the genomic heterogeneities are modeled by a rescaled Beta distribution.  
   
 Model in [SI, SC_1M_1N, SC_2M_1N, SC_1M_2N, SC_2M_2N]  
 Migration in [none, A, B, C, D, AC, BD, ACBD]  
@@ -154,5 +153,14 @@ __ABBA-BABA__ _**fd**_ and _**D**_ statistics as well as _**Gmin**_ have an impo
 However, it is important to note that these statistics are either sensitive to an available outgroup (_**ABBA-BABA**_), or are dependent on good quality inferences of haplotype phases (_**Gmin**_).  
 Although they are the most informative on simulated data, biases in their measurements on real data can induce biases in inferences. Excluding these statistics does not greatly reduce inferential power. The remaining 111 statistics do not depend as much on external groups or third-party inferences, and they contain enough combined information to make model selection.  
 The choice of whether or not to include them in the inferences should belong only to the experimenter.
+
+## Estimating the parameters  
+### SI model  
+Parameters of the SI model were estimated for 500 simulated datasets.  
+![parameters_SI](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/parameters_SI.png)  
+Each point represent a simulated dataset.  
+The x-axis shows the real value to estimate.  
+The y-axis shows the estimated value by using a random-forest approach.  
+The red line is a line of slope 1 passing through the origin.  
 
 
