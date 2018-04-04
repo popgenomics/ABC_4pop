@@ -5,7 +5,7 @@ Table of contents
    * [Summary statistics](#summary-statistics)
    * [Usage](#usage)
    * [Results](#results)
-      * [Testing for 'ongoing migration' _versus_ 'current isolation'](#testing-for-'ongoing-migration'-_versus_-'current-isolation')
+      * [Testing for ongoing migration _versus_ current isolation](#testing-for-'ongoing-migration'-_versus_-'current-isolation')
       * [Testing for the directionality of introgression](#testing-for-the-directionality-of-introgression)
       * [Effects of statistics on model confusion](#effects-of-statistics-on-model-confusion)
   
@@ -88,7 +88,7 @@ Statistical comparison between "observation" and "simulations" can be made using
  
  
 # Results  
-## Testing for 'ongoing migration' _versus_ 'current isolation'  
+## Testing for ongoing migration _versus_ current isolation  
 Four models were compared: secondary contacts (_i)_ between A and C, _ii)_ between A/C and B/D, _iii)_ between B and D) and strict isolation (__SI__).  
 The classification error of the ABC approach when it comes to specifically comparing these 4 models are shown in the following table:  
 ![confusion matrix](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/confusion_matrix.png)  
