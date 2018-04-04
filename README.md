@@ -167,5 +167,6 @@ Results for current populations are shown only for population A, and shows simil
 In the same way for Na_AB and Na_CD, and for Tsplit_AB and Tsplit_CD.  
 
 ### Effect of gene flow on paramters estimates  
+#### Time of split between (A,B) and (C,D)
 ![parameters_tsplit_5models](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/tsplit_5models.png)  
 
