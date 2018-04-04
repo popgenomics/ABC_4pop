@@ -162,5 +162,7 @@ Each point represent a simulated dataset.
 The x-axis shows the real value to estimate.  
 The y-axis shows the estimated value by using a random-forest approach.  
 The red line is a line of slope 1 passing through the origin.  
-
+  
+Results for current populations are shown only for population A, and are similar to B, C and D.  
+In the same way for Na_AB and Na_CD, and for Tsplit_AB and Tsplit_CD.  
 
