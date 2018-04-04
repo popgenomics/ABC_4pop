@@ -5,6 +5,7 @@ Table of contents
    * [Summary statistics](#summary-statistics)
    * [Usage](#usage)
    * [Results](#results)
+      * [Testing for 'ongoing migration' _versus_ 'current isolation'](#testing-for-'ongoing-migration'-_versus_-'current-isolation')
       * [Testing for the directionality of introgression](#testing-for-the-directionality-of-introgression)
       * [Effects of statistics on model confusion](#effects-of-statistics-on-model-confusion)
   
@@ -84,13 +85,16 @@ Migration in [none, A, B, C, D, AC, BD, ACBD]
   
   
 Statistical comparison between "observation" and "simulations" can be made using various R libraries ([_abc_](https://cran.r-project.org/web/packages/abc/abc.pdf), [_abcrf_](https://cran.r-project.org/web/packages/abcrf/abcrf.pdf)).  
-  
-In the following example, I measured the classification error among four models:  
-![confusion matrix](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/confusion_matrix.png)  
-Probabilities of each model was inferred for 5,000 of simulated datasets under each model. Errors are lying between 1.5% and 2.76%.  
-  
-  
+ 
+ 
 # Results  
+## Testing for 'ongoing migration' _versus_ 'current isolation'  
+Four models were compared: secondary contacts (_i)_ between A and C, _ii)_ between A/C and B/D, _iii)_ between B and D) and strict isolation (__SI__).  
+The classification error of the ABC approach when it comes to specifically comparing these 4 models are shown in the following table:  
+![confusion matrix](https://github.com/popgenomics/ABC_4pop/blob/master/pictures/confusion_matrix.png)  
+Classification error corresponds to the percentage over 5,000 of simulated datasets under the model _Mi_ that were not statistically supported as being _Mi_. Those errors are lying between 1.5% and 2.76%.  
+  
+  
 ## Testing for the directionality of introgression  
 For a given pair of gene pools A and C, one can easily test whether the introgression occurred unidirectionally (A→C or A←C) *versus* bidirectionally (A↔C).
   
