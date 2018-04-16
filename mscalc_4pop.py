@@ -1,6 +1,6 @@
-#!/usr/bin/pypy
-# #!/gepv/home2/croux/bin/pypy
+#!/gepv/home2/croux/bin/pypy
 
+# #!/usr/bin/pypy
 ## #!/usr/bin/python
 
 
@@ -261,6 +261,53 @@ def nSs_nSf(ss, sf):
 				ss_sf += 1
 	res = {'ss_sf': ss_sf, 'ss_noSf': ss_noSf, 'noSs_sf': noSs_sf, 'noSs_noSf': noSs_noSf}
 	return(res)
+
+
+def ABBA_BABA_v2(pA, pB, pC):
+	# pA, pB and pC are lists of allele frequencies
+	nSNPs = len(pA)
+	ABBAsum = 0.0
+	BABAsum = 0.0
+	maxABBAsumHom = 0.0
+	maxBABAsumHom = 0.0
+	maxABBAsumD = 0.0
+	maxBABAsumD = 0.0
+	#get derived frequencies for all biallelic siites
+	for snp in range(nSNPs):
+		p1Freq = pA[snp]
+		p2Freq = pB[snp] 
+		p3Freq = pC[snp]
+		# get weigtings for ABBAs and BABAs
+		try: # this was added to ignore crashes when there is missing data for a population at a site - we just ignore these sites
+			ABBAsum += (1 - p1Freq) * p2Freq * p3Freq
+			BABAsum += p1Freq * (1 - p2Freq) * p3Freq
+			maxABBAsumHom += (1 - p1Freq) * p3Freq * p3Freq
+			maxBABAsumHom += p1Freq * (1 - p3Freq) * p3Freq
+			if p3Freq >= p2Freq:
+				maxABBAsumD += (1 - p1Freq) * p3Freq * p3Freq 
+				maxBABAsumD += p1Freq * (1 - p3Freq) * p3Freq
+			else:
+				maxABBAsumD += (1 - p1Freq) * p2Freq * p2Freq
+				maxBABAsumD += p1Freq * (1 - p2Freq) * p2Freq
+		except:
+			continue
+	#calculate D, f and fb
+	output = {}
+	try:
+		output["D"] = (ABBAsum - BABAsum) / (ABBAsum + BABAsum)
+	except:
+		output["D"] = -9 
+	try:
+		output["fhom"] = (ABBAsum - BABAsum) / (maxABBAsumHom - maxBABAsumHom)
+	except:
+		output["fhom"] = -9 
+	try:
+		output["fd"] = (ABBAsum - BABAsum) / (maxABBAsumD - maxBABAsumD)
+	except:
+		output["fd"] = -9 
+	output["ABBA"] = ABBAsum
+	output["BABA"] = BABAsum
+	return output
 
 
 def ABBA_BABA(spA, spB, spC, spD):
@@ -701,21 +748,37 @@ res += "FST_BD_avg\tFST_BD_std\t"
 res += "FST_CD_avg\tFST_CD_std\t"
 
 res += 'D_AB_C_avg\tD_AB_C_std\t'
+res += 'D_negOne_AB_C\tD_posOne_AB_C\t'
 res += 'fd_AB_C_avg\tfd_AB_C_std\t'
+res += 'fhom_AB_C_avg\tfhom_AB_C_std\t'
 res += 'D_AB_D_avg\tD_AB_D_std\t'
+res += 'D_negOne_AB_D\tD_posOne_AB_D\t'
 res += 'fd_AB_D_avg\tfd_AB_D_std\t'
+res += 'fhom_AB_D_avg\tfhom_AB_D_std\t'
 res += 'D_BA_C_avg\tD_BA_C_std\t'
+res += 'D_negOne_BA_C\tD_posOne_BA_C\t'
 res += 'fd_BA_C_avg\tfd_BA_C_std\t'
+res += 'fhom_BA_C_avg\tfhom_BA_C_std\t'
 res += 'D_BA_D_avg\tD_BA_D_std\t'
+res += 'D_negOne_BA_D\tD_posOne_BA_D\t'
 res += 'fd_BA_D_avg\tfd_BA_D_std\t'
+res += 'fhom_BA_D_avg\tfhom_BA_D_std\t'
 res += 'D_CD_A_avg\tD_CD_A_std\t'
+res += 'D_negOne_CD_A\tD_posOne_CD_A\t'
 res += 'fd_CD_A_avg\tfd_CD_A_std\t'
+res += 'fhom_CD_A_avg\tfhom_CD_A_std\t'
 res += 'D_CD_B_avg\tD_CD_B_std\t'
+res += 'D_negOne_CD_B\tD_posOne_CD_B\t'
 res += 'fd_CD_B_avg\tfd_CD_B_std\t'
+res += 'fhom_CD_B_avg\tfhom_CD_B_std\t'
 res += 'D_DC_A_avg\tD_DC_A_std\t'
+res += 'D_negOne_DC_A\tD_posOne_DC_A\t'
 res += 'fd_DC_A_avg\tfd_DC_A_std\t'
+res += 'fhom_DC_A_avg\tfhom_DC_A_std\t'
 res += 'D_DC_B_avg\tD_DC_B_std\t'
-res += 'fd_DC_B_avg\tfd_DC_B_std\n'
+res += 'D_negOne_DC_B\tD_posOne_DC_B\t'
+res += 'fd_DC_B_avg\tfd_DC_B_std\t'
+res += 'fhom_DC_B_avg\tfhom_DC_B_std\n'
 outfile.write(res)
 
 #infile = open(msfile, "r")
@@ -742,13 +805,14 @@ for line in sys.stdin: # read the ms's output from the stdin
 			DtajA, DtajB, DtajC, DtajD = [], [], [], []
 			divAB, divAC, divAD, divBC, divBD, divCD = [], [], [], [], [], []
 			netdivAB, netdivAC, netdivAD, netdivBC, netdivBD, netdivCD = [], [], [], [], [], []
+			FST_AB, FST_AC, FST_AD, FST_BC, FST_BD, FST_CD = [], [], [], [], [], []
 			minDivAB, minDivAC, minDivAD, minDivBC, minDivBD, minDivCD = [], [], [], [], [], []
 			maxDivAB, maxDivAC, maxDivAD, maxDivBC, maxDivBD, maxDivCD = [], [], [], [], [], []
 			GminAB, GminAC, GminAD, GminBC, GminBD, GminCD = [], [], [], [], [], []
 			GmaxAB, GmaxAC, GmaxAD, GmaxBC, GmaxBD, GmaxCD = [], [], [], [], [], []
-			FST_AB, FST_AC, FST_AD, FST_BC, FST_BD, FST_CD = [], [], [], [], [], []
 			D_AB_C, D_AB_D, D_BA_C, D_BA_D, D_CD_A, D_CD_B, D_DC_A, D_DC_B = [], [], [], [], [], [], [], []
 			fd_AB_C, fd_AB_D, fd_BA_C, fd_BA_D, fd_CD_A, fd_CD_B, fd_DC_A, fd_DC_B = [], [], [], [], [], [], [], []
+			fhom_AB_C, fhom_AB_D, fhom_BA_C, fhom_BA_D, fhom_CD_A, fhom_CD_B, fhom_DC_A, fhom_DC_B = [], [], [], [], [], [], [], []
 		
 		nLoci_cnt += 1
 		nSam_cnt = 0 # count the number of treated individuals within a locus
@@ -854,6 +918,15 @@ for line in sys.stdin: # read the ms's output from the stdin
 			fd_CD_B.append(0)
 			fd_DC_A.append(0)
 			fd_DC_B.append(0)
+			
+			fhom_AB_C.append(0)
+			fhom_AB_D.append(0)
+			fhom_BA_C.append(0)
+			fhom_BA_D.append(0)
+			fhom_CD_A.append(0)
+			fhom_CD_B.append(0)
+			fhom_DC_A.append(0)
+			fhom_DC_B.append(0)
 			#noSs_noSf += 1
 		if segsites != 0:
 			if "positions" not in line and line!="\n":
@@ -1049,26 +1122,62 @@ for line in sys.stdin: # read the ms's output from the stdin
 					FST_CD.append(Fst(cr_sum(tmpC['pi_SNPs']), cr_sum(tmpD['pi_SNPs']), cr_sum(piT_CD)))
 					
 					# ABBA_BABA
-					ABBA_BABA_res = ABBA_BABA(spA, spB, spC, spD)
-					D_AB_C.append(ABBA_BABA_res['D_AB_C'])
-					D_AB_D.append(ABBA_BABA_res['D_AB_D'])
-					D_BA_C.append(ABBA_BABA_res['D_BA_C'])
-					D_BA_D.append(ABBA_BABA_res['D_BA_D'])
-					D_CD_A.append(ABBA_BABA_res['D_CD_A'])
-					D_CD_B.append(ABBA_BABA_res['D_CD_B'])
-					D_DC_A.append(ABBA_BABA_res['D_DC_A'])
-					D_DC_B.append(ABBA_BABA_res['D_DC_B'])
+					#ABBA_BABA_res = ABBA_BABA(spA, spB, spC, spD)
+					#D_AB_C.append(ABBA_BABA_res['D_AB_C'])
+					#D_AB_D.append(ABBA_BABA_res['D_AB_D'])
+					#D_BA_C.append(ABBA_BABA_res['D_BA_C'])
+					#D_BA_D.append(ABBA_BABA_res['D_BA_D'])
+					#D_CD_A.append(ABBA_BABA_res['D_CD_A'])
+					#D_CD_B.append(ABBA_BABA_res['D_CD_B'])
+					#D_DC_A.append(ABBA_BABA_res['D_DC_A'])
+					#D_DC_B.append(ABBA_BABA_res['D_DC_B'])
 
-					fd_AB_C.append(ABBA_BABA_res['fd_AB_C'])
-					fd_AB_D.append(ABBA_BABA_res['fd_AB_D'])
-					fd_BA_C.append(ABBA_BABA_res['fd_BA_C'])
-					fd_BA_D.append(ABBA_BABA_res['fd_BA_D'])
-					fd_CD_A.append(ABBA_BABA_res['fd_CD_A'])
-					fd_CD_B.append(ABBA_BABA_res['fd_CD_B'])
-					fd_DC_A.append(ABBA_BABA_res['fd_DC_A'])
-					fd_DC_B.append(ABBA_BABA_res['fd_DC_B'])
+					#fd_AB_C.append(ABBA_BABA_res['fd_AB_C'])
+					#fd_AB_D.append(ABBA_BABA_res['fd_AB_D'])
+					#fd_BA_C.append(ABBA_BABA_res['fd_BA_C'])
+					#fd_BA_D.append(ABBA_BABA_res['fd_BA_D'])
+					#fd_CD_A.append(ABBA_BABA_res['fd_CD_A'])
+					#fd_CD_B.append(ABBA_BABA_res['fd_CD_B'])
+					#fd_DC_A.append(ABBA_BABA_res['fd_DC_A'])
+					#fd_DC_B.append(ABBA_BABA_res['fd_DC_B'])
 					
+						
+					ABBA_BABA_AB_C = ABBA_BABA_v2(tmpA['freq'], tmpB['freq'], tmpC['freq'])
+					ABBA_BABA_AB_D = ABBA_BABA_v2(tmpA['freq'], tmpB['freq'], tmpD['freq'])
+					ABBA_BABA_BA_C = ABBA_BABA_v2(tmpB['freq'], tmpA['freq'], tmpC['freq'])
+					ABBA_BABA_BA_D = ABBA_BABA_v2(tmpB['freq'], tmpA['freq'], tmpD['freq'])
+					ABBA_BABA_CD_A = ABBA_BABA_v2(tmpC['freq'], tmpD['freq'], tmpA['freq'])
+					ABBA_BABA_CD_B = ABBA_BABA_v2(tmpC['freq'], tmpD['freq'], tmpB['freq'])
+					ABBA_BABA_DC_A = ABBA_BABA_v2(tmpD['freq'], tmpC['freq'], tmpA['freq'])
+					ABBA_BABA_DC_B = ABBA_BABA_v2(tmpD['freq'], tmpC['freq'], tmpB['freq'])
 					
+					D_AB_C.append(ABBA_BABA_AB_C['D'])
+					D_AB_D.append(ABBA_BABA_AB_D['D'])
+					D_BA_C.append(ABBA_BABA_BA_C['D'])
+					D_BA_D.append(ABBA_BABA_BA_D['D'])
+					D_CD_A.append(ABBA_BABA_CD_A['D'])
+					D_CD_B.append(ABBA_BABA_CD_B['D'])
+					D_DC_A.append(ABBA_BABA_DC_A['D'])
+					D_DC_B.append(ABBA_BABA_DC_B['D'])
+
+					fd_AB_C.append(ABBA_BABA_AB_C['fd'])
+					fd_AB_D.append(ABBA_BABA_AB_D['fd'])
+					fd_BA_C.append(ABBA_BABA_BA_C['fd'])
+					fd_BA_D.append(ABBA_BABA_BA_D['fd'])
+					fd_CD_A.append(ABBA_BABA_CD_A['fd'])
+					fd_CD_B.append(ABBA_BABA_CD_B['fd'])
+					fd_DC_A.append(ABBA_BABA_DC_A['fd'])
+					fd_DC_B.append(ABBA_BABA_DC_B['fd'])
+
+					fhom_AB_C.append(ABBA_BABA_AB_C['fhom'])
+					fhom_AB_D.append(ABBA_BABA_AB_D['fhom'])
+					fhom_BA_C.append(ABBA_BABA_BA_C['fhom'])
+					fhom_BA_D.append(ABBA_BABA_BA_D['fhom'])
+					fhom_CD_A.append(ABBA_BABA_CD_A['fhom'])
+					fhom_CD_B.append(ABBA_BABA_CD_B['fhom'])
+					fhom_DC_A.append(ABBA_BABA_DC_A['fhom'])
+					fhom_DC_B.append(ABBA_BABA_DC_B['fhom'])
+				
 	# compute average and std over of statistics over loci
 	if nLoci_cnt != 0 and len(sxA) == nLoci:
 		test = 0
@@ -1282,6 +1391,22 @@ for line in sys.stdin: # read the ms's output from the stdin
 		fd_DC_B_avg = cr_mean(fd_DC_B)
 		fd_DC_B_std = cr_std(fd_DC_B, fd_DC_B_avg)
 		
+		fhom_AB_C_avg = cr_mean(fhom_AB_C)
+		fhom_AB_C_std = cr_std(fhom_AB_C, fhom_AB_C_avg)
+		fhom_AB_D_avg = cr_mean(fhom_AB_D)
+		fhom_AB_D_std = cr_std(fhom_AB_D, fhom_AB_D_avg)
+		fhom_BA_C_avg = cr_mean(fhom_BA_C)
+		fhom_BA_C_std = cr_std(fhom_BA_C, fhom_BA_C_avg)
+		fhom_BA_D_avg = cr_mean(fhom_BA_D)
+		fhom_BA_D_std = cr_std(fhom_BA_D, fhom_BA_D_avg)
+		fhom_CD_A_avg = cr_mean(fhom_CD_A)
+		fhom_CD_A_std = cr_std(fhom_CD_A, fhom_CD_A_avg)
+		fhom_CD_B_avg = cr_mean(fhom_CD_B)
+		fhom_CD_B_std = cr_std(fhom_CD_B, fhom_CD_B_avg)
+		fhom_DC_A_avg = cr_mean(fhom_DC_A)
+		fhom_DC_A_std = cr_std(fhom_DC_A, fhom_DC_A_avg)
+		fhom_DC_B_avg = cr_mean(fhom_DC_B)
+		fhom_DC_B_std = cr_std(fhom_DC_B, fhom_DC_B_avg)
 		#pearson_r_div_netDiv = cr_pearsonR(divAB, netdivAB)
 		#pearson_r_div_FST = cr_pearsonR(divAB, FST)
 		#pearson_r_netDiv_FST = cr_pearsonR(netdivAB, FST)
@@ -1388,21 +1513,38 @@ for line in sys.stdin: # read the ms's output from the stdin
 		res += "{0:.5f}\t{1:.5f}\t".format(FST_CD_avg, FST_CD_std)
 		
 		res += "{0:.5f}\t{1:.5f}\t".format(D_AB_C_avg, D_AB_C_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(D_AB_C.count(-1), D_AB_C.count(1))
 		res += "{0:.5f}\t{1:.5f}\t".format(fd_AB_C_avg, fd_AB_C_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(fhom_AB_C_avg, fhom_AB_C_std)
 		res += "{0:.5f}\t{1:.5f}\t".format(D_AB_D_avg, D_AB_D_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(D_AB_D.count(-1), D_AB_D.count(1))
 		res += "{0:.5f}\t{1:.5f}\t".format(fd_AB_D_avg, fd_AB_D_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(fhom_AB_D_avg, fhom_AB_D_std)
 		res += "{0:.5f}\t{1:.5f}\t".format(D_BA_C_avg, D_BA_C_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(D_BA_C.count(-1), D_BA_C.count(1))
 		res += "{0:.5f}\t{1:.5f}\t".format(fd_BA_C_avg, fd_BA_C_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(fhom_BA_C_avg, fhom_BA_C_std)
 		res += "{0:.5f}\t{1:.5f}\t".format(D_BA_D_avg, D_BA_D_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(D_BA_D.count(-1), D_BA_D.count(1))
 		res += "{0:.5f}\t{1:.5f}\t".format(fd_BA_D_avg, fd_BA_D_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(fhom_BA_D_avg, fhom_BA_D_std)
 		res += "{0:.5f}\t{1:.5f}\t".format(D_CD_A_avg, D_CD_A_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(D_CD_A.count(-1), D_CD_A.count(1))
 		res += "{0:.5f}\t{1:.5f}\t".format(fd_CD_A_avg, fd_CD_A_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(fhom_CD_A_avg, fhom_CD_A_std)
 		res += "{0:.5f}\t{1:.5f}\t".format(D_CD_B_avg, D_CD_B_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(D_CD_B.count(-1), D_CD_B.count(1))
 		res += "{0:.5f}\t{1:.5f}\t".format(fd_CD_B_avg, fd_CD_B_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(fhom_CD_B_avg, fhom_CD_B_std)
 		res += "{0:.5f}\t{1:.5f}\t".format(D_DC_A_avg, D_DC_A_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(D_DC_A.count(-1), D_DC_A.count(1))
 		res += "{0:.5f}\t{1:.5f}\t".format(fd_DC_A_avg, fd_DC_A_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(fhom_DC_A_avg, fhom_DC_A_std)
 		res += "{0:.5f}\t{1:.5f}\t".format(D_DC_B_avg, D_DC_B_std)
-		res += "{0:.5f}\t{1:.5f}".format(fd_DC_B_avg, fd_DC_B_std)
+		res += "{0:.5f}\t{1:.5f}\t".format(D_DC_B.count(-1), D_DC_B.count(1))
+		res += "{0:.5f}\t{1:.5f}\t".format(fd_DC_B_avg, fd_DC_B_std)
+		res += "{0:.5f}\t{1:.5f}".format(fhom_DC_B_avg, fhom_DC_B_std)
+
 		#res += "{0:.5f}\t".format(pearson_r_div_netDiv)
 		#res += "{0:.5f}\t".format(pearson_r_div_FST)
 		#res += "{0:.5f}\t".format(pearson_r_netDiv_FST)
