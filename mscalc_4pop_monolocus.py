@@ -623,7 +623,7 @@ def computeStats(locus, outfile):
         posStart = ''
         posEnd = ''
         locusName = locus.split('_')
-        locusName = locusName[2] + '_' + locusName[3]# + '_' + locusName[4]
+        locusName = locusName[4] + '_' + locusName[5]# + '_' + locusName[4]
 
         if os.path.isfile(bpfile) == False:
                 sys.exit("\n\t\033[1;31;40mERROR: {0} was not found\n\033[0m\n".format(bpfile))
@@ -671,6 +671,8 @@ def computeStats(locus, outfile):
 	infile = open(msfile, 'r')
 	for line in infile:
 		line = line.strip()
+		if line[0:2] == '//':
+			contigName = line.split(' ')[1]
 		if "segsites" in line:
 			if nLoci_cnt == 0:
 				#ss_sf, noSs_sf, ss_noSf, noSs_noSf = 0, 0, 0, 0
@@ -703,6 +705,8 @@ def computeStats(locus, outfile):
 		if test == 1:
 			if segsites == 0:
 				test = 0
+				posStart = 0
+				posEnd = 0
 				sfAB.append(0)
 				sfAC.append(0)
 				sfAD.append(0)
@@ -808,6 +812,10 @@ def computeStats(locus, outfile):
 				fhom_DC_B.append(0)
 				#noSs_noSf += 1
 			if segsites != 0:
+				if "positions" in line:
+					tmp = line.strip().split(' ')
+					posStart = tmp[1]
+					posEnd = tmp[-1]
 				if "positions" not in line and line!="\n":
 					nSam_cnt += 1
 					if nSam_cnt <= nSamA[nLoci_cnt - 1]:
@@ -1291,9 +1299,9 @@ def computeStats(locus, outfile):
 			#pearson_r_netDiv_FST = cr_pearsonR(netdivAB, FST)
 			
 			#print("dataset {0}: {1} loci".format(nSim_cnt-1, len(ss)))
-			res = ""
 			#res += "{0}\t{1:.5f}\t{2:.5f}\t".format(nSim_cnt-1, bialsites_avg, bialsites_std)
-			res += "{0}\t{1:.5f}\t{2:.5f}\t".format(locus, bialsites_avg, bialsites_std)
+			res = "{0}\t{1}\t{2}\t{3}\t{4}\t".format(contigName, posStart, posEnd, locusName, L[0]) # contig\tposStart\tposEnd\tname\tlength
+			res += "{0:.5f}\t{1:.5f}\t".format(bialsites_avg, bialsites_std)
 			res += "{0:.5f}\t{1:.5f}\t".format(sfAB_avg, sfAB_std)
 			res += "{0:.5f}\t{1:.5f}\t".format(sfAC_avg, sfAC_std)
 			res += "{0:.5f}\t{1:.5f}\t".format(sfAD_avg, sfAD_std)
@@ -1439,7 +1447,7 @@ def computeStats(locus, outfile):
 ## ms' output file
 outfile = open("ABCstat_allLoci.txt", "w")
 # header
-res = "dataset\tbialsites_avg\tbialsites_std\t"
+res = "contig\tpos_first_SNP\tpos_last_SNP\tname\tlength\tbialsites_avg\tbialsites_std\t"
 
 res += "sfAB_avg\tsfAB_std\t"
 res += "sfAC_avg\tsfAC_std\t"
