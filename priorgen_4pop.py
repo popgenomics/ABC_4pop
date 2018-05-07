@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# #!/home/roux/python/Python-2.7.14/python
+#!/home/roux/python/Python-2.7.14/python
+# #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import sys
@@ -38,7 +38,7 @@ if len(sys.argv) != 4:
 
 # Configuration of the prior distribution
 nMultilocus = int(sys.argv[3])
-N_bound = [0, 10]
+N_bound = [0, 80]
 T_bound = [0, 10]
 M_bound = [0, 40]
 shape_bound = [0.01, 50]
