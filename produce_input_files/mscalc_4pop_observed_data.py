@@ -1,12 +1,11 @@
 #!/usr/bin/pypy
 
-# #!/gepv/home2/croux/bin/pypy
-# #!/home/roux/bin/pypy
-
-# #!/usr/bin/pypy
-## #!/usr/bin/python
-
-
+################################################################
+##  cat observed_data.ms | pypy mscalc_4pop_observed_data.py  ## 
+##  produces 2 output files:                                  ##
+##       . ABCstat.txt : avg and std statistics over all bins ##
+##       . ABCstat_bins.txt : statistics for each bin         ## 
+################################################################
 
 # assumes four populations with the following species tree:
 # ((A,B), (C,D))
@@ -649,7 +648,119 @@ for nsam in nSamD:
 
 ## ms' output file
 outfile = open("ABCstat.txt", "w")
+outfile_bins = open("ABCstat_bins.txt", "w")
 # header
+res_bin = "dataset\tbialsites_avg\t"
+
+res_bin += "sfAB_avg\t"
+res_bin += "sfAC_avg\t"
+res_bin += "sfAD_avg\t"
+res_bin += "sfBC_avg\t"
+res_bin += "sfBD_avg\t"
+res_bin += "sfCD_avg\t"
+
+res_bin += "sxA_avg\t"
+res_bin += "sxB_avg\t"
+res_bin += "sxC_avg\t"
+res_bin += "sxD_avg\t"
+
+res_bin += "ssAB_avg\t"
+res_bin += "ssAC_avg\t"
+res_bin += "ssAD_avg\t"
+res_bin += "ssBC_avg\t"
+res_bin += "ssBD_avg\t"
+res_bin += "ssCD_avg\t"
+
+res_bin += "piA_avg\t"
+res_bin += "piB_avg\t"
+res_bin += "piC_avg\t"
+res_bin += "piD_avg\t"
+
+res_bin += "thetaA_avg\t"
+res_bin += "thetaB_avg\t"
+res_bin += "thetaC_avg\t"
+res_bin += "thetaD_avg\t"
+
+res_bin += "DtajA_avg\t"
+res_bin += "DtajB_avg\t"
+res_bin += "DtajC_avg\t"
+res_bin += "DtajD_avg\t"
+
+res_bin += "divAB_avg\t"
+res_bin += "divAC_avg\t"
+res_bin += "divAD_avg\t"
+res_bin += "divBC_avg\t"
+res_bin += "divBD_avg\t"
+res_bin += "divCD_avg\t"
+
+res_bin += "netdivAB_avg\t"
+res_bin += "netdivAC_avg\t"
+res_bin += "netdivAD_avg\t"
+res_bin += "netdivBC_avg\t"
+res_bin += "netdivBD_avg\t"
+res_bin += "netdivCD_avg\t"
+
+res_bin += "minDivAB_avg\t"
+res_bin += "minDivAC_avg\t"
+res_bin += "minDivAD_avg\t"
+res_bin += "minDivBC_avg\t"
+res_bin += "minDivBD_avg\t"
+res_bin += "minDivCD_avg\t"
+
+res_bin += "maxDivAB_avg\t"
+res_bin += "maxDivAC_avg\t"
+res_bin += "maxDivAD_avg\t"
+res_bin += "maxDivBC_avg\t"
+res_bin += "maxDivBD_avg\t"
+res_bin += "maxDivCD_avg\t"
+
+res_bin += "GminAB_avg\t"
+res_bin += "GminAC_avg\t"
+res_bin += "GminAD_avg\t"
+res_bin += "GminBC_avg\t"
+res_bin += "GminBD_avg\t"
+res_bin += "GminCD_avg\t"
+
+res_bin += "GmaxAB_avg\t"
+res_bin += "GmaxAC_avg\t"
+res_bin += "GmaxAD_avg\t"
+res_bin += "GmaxBC_avg\t"
+res_bin += "GmaxBD_avg\t"
+res_bin += "GmaxCD_avg\t"
+
+res_bin += "FST_AB_avg\t"
+res_bin += "FST_AC_avg\t"
+res_bin += "FST_AD_avg\t"
+res_bin += "FST_BC_avg\t"
+res_bin += "FST_BD_avg\t"
+res_bin += "FST_CD_avg\t"
+
+res_bin += 'D_AB_C_avg\t'
+res_bin += 'fd_AB_C_avg\t'
+res_bin += 'fhom_AB_C_avg\t'
+res_bin += 'D_AB_D_avg\t'
+res_bin += 'fd_AB_D_avg\t'
+res_bin += 'fhom_AB_D_avg\t'
+res_bin += 'D_BA_C_avg\t'
+res_bin += 'fhom_BA_C_avg\t'
+res_bin += 'D_BA_D_avg\t'
+res_bin += 'fhom_BA_D_avg\t'
+res_bin += 'D_CD_A_avg\t'
+res_bin += 'fd_CD_A_avg\t'
+res_bin += 'fhom_CD_A_avg\t'
+res_bin += 'D_CD_B_avg\t'
+res_bin += 'fd_CD_B_avg\t'
+res_bin += 'fhom_CD_B_avg\t'
+res_bin += 'D_DC_A_avg\t'
+res_bin += 'fd_DC_A_avg\t'
+res_bin += 'fhom_DC_A_avg\t'
+res_bin += 'D_DC_B_avg\t'
+res_bin += 'fd_DC_B_avg\t'
+res_bin += 'fhom_DC_B_avg\n'
+outfile_bins.write(res_bin)
+
+
+
 res = "dataset\tbialsites_avg\tbialsites_std\t"
 
 res += "sfAB_avg\tsfAB_std\t"
@@ -895,6 +1006,13 @@ for line in sys.stdin: # read the ms's output from the stdin
 			GminBC.append(0)
 			GminBD.append(0)
 			GminCD.append(0)
+			
+			GmaxAB.append(0)
+			GmaxAC.append(0)
+			GmaxAD.append(0)
+			GmaxBC.append(0)
+			GmaxBD.append(0)
+			GmaxCD.append(0)
 			
 			FST_AB.append(-9)
 			FST_AC.append(-9)
@@ -1179,13 +1297,11 @@ for line in sys.stdin: # read the ms's output from the stdin
 					fhom_CD_B.append(ABBA_BABA_CD_B['fhom'])
 					fhom_DC_A.append(ABBA_BABA_DC_A['fhom'])
 					fhom_DC_B.append(ABBA_BABA_DC_B['fhom'])
-				
 	# compute average and std over of statistics over loci
 	if nLoci_cnt != 0 and len(sxA) == nLoci:
 		test = 0
 		nSim_cnt += 1
 		nLoci_cnt = 0
-		
 		# statistics
 		bialsites_avg = cr_mean(bialsites)
 		bialsites_std = cr_std(bialsites, bialsites_avg)
@@ -1332,7 +1448,7 @@ for line in sys.stdin: # read the ms's output from the stdin
 		GminBD_std = cr_std(GminBD, GminBD_avg)
 		GminCD_avg = cr_mean(GminCD)
 		GminCD_std = cr_std(GminCD, GminCD_avg)
-
+		
 		GmaxAB_avg = cr_mean(GmaxAB)
 		GmaxAB_std = cr_std(GmaxAB, GmaxAB_avg)
 		GmaxAC_avg = cr_mean(GmaxAC)
@@ -1554,6 +1670,122 @@ for line in sys.stdin: # read the ms's output from the stdin
 		#res += "{0:.5f}\t{1:.5f}\t{2:.5f}\t{3:.5f}".format(ss_sf/(1.0*nLoci), ss_noSf/(1.0*nLoci), noSs_sf/(1.0*nLoci), noSs_noSf/(1.0*nLoci)) # proportion of ss_sf, ss_noSf, etc ... loci
 		res += "\n"
 		outfile.write(res)
+		
+		for bin_tmp in range(nLoci):
+			res_bin = ""
+			res_bin += "{0}\t".format(bin_tmp)
+			res_bin += "{0:.5f}\t".format(sfAB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(sfAC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(sfAD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(sfBC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(sfBD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(sfCD[bin_tmp])
+			
+			res_bin += "{0:.5f}\t".format(sxA[bin_tmp])
+			res_bin += "{0:.5f}\t".format(sxB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(sxC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(sxD[bin_tmp])
+		
+			res_bin += "{0:.5f}\t".format(ssAB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(ssAC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(ssAD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(ssBC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(ssBD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(ssCD[bin_tmp])
+			#res_bin += "{0:.5f}\t".format(successive_ss[bin_tmp], successive_ss_std)
+
+			res_bin += "{0:.5f}\t".format(piA[bin_tmp])
+			res_bin += "{0:.5f}\t".format(piB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(piC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(piD[bin_tmp])
+
+			res_bin += "{0:.5f}\t".format(thetaA[bin_tmp])
+			res_bin += "{0:.5f}\t".format(thetaB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(thetaC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(thetaD[bin_tmp])
+
+			res_bin += "{0:.5f}\t".format(DtajA[bin_tmp])
+			res_bin += "{0:.5f}\t".format(DtajB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(DtajC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(DtajD[bin_tmp])
+
+			res_bin += "{0:.5f}\t".format(divAB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(divAC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(divAD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(divBC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(divBD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(divCD[bin_tmp])
+			
+			res_bin += "{0:.5f}\t".format(netdivAB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(netdivAC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(netdivAD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(netdivBC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(netdivBD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(netdivCD[bin_tmp])
+
+			res_bin += "{0:.5f}\t".format(minDivAB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(minDivAC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(minDivAD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(minDivBC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(minDivBD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(minDivCD[bin_tmp])
+
+			res_bin += "{0:.5f}\t".format(maxDivAB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(maxDivAC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(maxDivAD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(maxDivBC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(maxDivBD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(maxDivCD[bin_tmp])
+
+			res_bin += "{0:.5f}\t".format(GminAB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(GminAC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(GminAD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(GminBC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(GminBD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(GminCD[bin_tmp])
+
+			res_bin += "{0:.5f}\t".format(GmaxAB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(GmaxAC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(GmaxAD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(GmaxBC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(GmaxBD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(GmaxCD[bin_tmp])
+			
+			res_bin += "{0:.5f}\t".format(FST_AB[bin_tmp])
+			res_bin += "{0:.5f}\t".format(FST_AC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(FST_AD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(FST_BC[bin_tmp])
+			res_bin += "{0:.5f}\t".format(FST_BD[bin_tmp])
+			res_bin += "{0:.5f}\t".format(FST_CD[bin_tmp])
+			
+			res_bin += "{0:.5f}\t".format(D_AB_C[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fd_AB_C[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fhom_AB_C[bin_tmp])
+			res_bin += "{0:.5f}\t".format(D_AB_D[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fd_AB_D[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fhom_AB_D[bin_tmp])
+			res_bin += "{0:.5f}\t".format(D_BA_C[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fd_BA_C[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fhom_BA_C[bin_tmp])
+			res_bin += "{0:.5f}\t".format(D_BA_D[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fd_BA_D[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fhom_BA_D[bin_tmp])
+			res_bin += "{0:.5f}\t".format(D_CD_A[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fd_CD_A[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fhom_CD_A[bin_tmp])
+			res_bin += "{0:.5f}\t".format(D_CD_B[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fd_CD_B[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fhom_CD_B[bin_tmp])
+			res_bin += "{0:.5f}\t".format(D_DC_A[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fd_DC_A[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fhom_DC_A[bin_tmp])
+			res_bin += "{0:.5f}\t".format(D_DC_B[bin_tmp])
+			res_bin += "{0:.5f}\t".format(fd_DC_B[bin_tmp])
+			res_bin += "{0:.5f}".format(fhom_DC_B[bin_tmp])
+
+			res_bin += "\n"
+			outfile_bins.write(res_bin)
 infile.close()
 outfile.close()
+outfile_bins.close()
 

@@ -170,10 +170,10 @@ for sim in range(nMultilocus):
 	if "1M" in sys.argv[1]:
 		M13_vec = [M13[sim]] * nLoci
 		M31_vec = [M31[sim]] * nLoci
-		M14_vec = [M14[sim]] * nLoci
-		M41_vec = [M41[sim]] * nLoci
-		M23_vec = [M23[sim]] * nLoci
-		M32_vec = [M32[sim]] * nLoci
+#		M14_vec = [M14[sim]] * nLoci # 20/10/2020
+#		M41_vec = [M41[sim]] * nLoci # 20/10/2020
+#		M23_vec = [M23[sim]] * nLoci # 20/10/2020
+#		M32_vec = [M32[sim]] * nLoci # 20/10/2020
 		M24_vec = [M24[sim]] * nLoci
 		M42_vec = [M42[sim]] * nLoci
 	

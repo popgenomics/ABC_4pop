@@ -115,6 +115,7 @@ infile.close()
 nLoci = len(tmp)
 
 commandLine = "priorgen_4pop_v2.py {0} {1} {2} | msnsam tbs {3} -t tbs -r tbs tbs -I 4 tbs tbs tbs tbs 0 -n 1 tbs -n 2 tbs -n 3 tbs -n 4 tbs -m 1 2 tbs -m 2 1 tbs -m 1 3 tbs -m 3 1 tbs -m 1 4 tbs -m 4 1 tbs -m 2 3 tbs -m 3 2 tbs -m 2 4 tbs -m 4 2 tbs -m 3 4 tbs -m 4 3 tbs -em tbs 1 3 0 -em tbs 3 1 0 -em tbs 2 4 0 -em tbs 4 2 0 -em tbs 1 2 0 -em tbs 2 1 0 -ej tbs 2 1 -en tbs 1 tbs -em tbs 3 4 0 -em tbs 4 3 0 -ej tbs 4 3 -en tbs 3 tbs -ej tbs 3 1 -eN tbs tbs | mscalc_4pop.py".format(model, migration, nMultilocus, nLoci*nMultilocus)
+commandLine
 os.system(commandLine)
 
 
