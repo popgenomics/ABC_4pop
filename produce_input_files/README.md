@@ -17,8 +17,11 @@ produces 3 output files:
          . bpfile : used with observed_data.ms by mscalc to compute statistics  
   
 # computes summary statistics from the converted files  
-cat observed_data.ms | pypy mscalc_4pop_observed_data.py  
-produces 2 output files:  
-     . ABCstat.txt : avg and std statistics over all bins  
-     . ABCstat_bins.txt : statistics for each bin  
+cat observed_data.ms | pypy mscalc_4pop_observed_data.py 100
+_argument 1_: number of bins to subsampled for multilocus ABC inferences  
+produces 3 output files:  
+     . ABCstat.txt : avg and std statistics over *100* subsampled bins  
+     . ABCstat_bins.txt : statistics for each bin (not only the subsampled ones)  
+     . bpfile_100_bins : bpfile to perform the multilocus ABC inferences from a set of subsampled bins in order to make the inferences faster.  
+
   
